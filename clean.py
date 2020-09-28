@@ -104,13 +104,29 @@ def calc_percent_kcals(df):
     df['% calories min fat'] = df['calories min fat / 100g'] / cal_per_100g * 100
     return df
 
-def mass_per_kcal(df):
-    df['kcal/kg'] = df['kcal/kg'].fillna(df['kcal/can'] / df['item_vol_oz'] * 35.27396195)
+def calc_grams_per_kcal(df):
+    df['kcal/kg'] = df['kcal/kg'].fillna(df['kcal/unit'] / df['item_vol_oz'] * 35.27396195)
     df['g/kcal'] = 1000 / df['kcal/kg']
     return df
 
-def cost_per_gram(df):
-    pass    
+def calc_total_grams(df):
+    df['total_mass_lb'] = df['total_mass_lb'].fillna(df['attr_mass_lb'])
+    if df['total_mass_lb'].isna().any():
+        df['total_mass_lb'] = df['total_mass_lb'].fillna(df['item_count'] * df['item_vol_oz'] / 16)
+    df['total_mass_g'] = df['total_mass_lb'] * 453.59237
+    return df
+
+def calc_total_kcals(df):
+    df['total_kcals'] = df['kcal/kg'] * df['total_mass_g'] / 1000
+    return df
+
+def calc_usd_per_kcal(df):
+    df['usd/kcal'] = df['our_price'] / df['total_kcals']
+    return df
+
+def calc_usd_per_gram(df):
+    df['usd/g'] = df['our_price'] / df['total_mass_g']
+    return df
 
 
 # PROCESS DATA 
@@ -137,14 +153,16 @@ df = get_unit_val_col(df, column_name = 'calories',
 
 df = get_unit_val_col(df, column_name = 'calories', 
                   col_split_regex = '(?<!/) (?=\d)|,|;|:', 
-                  unit_name = 'kcal/can', 
-                  unit_regex = 'kcal.*can',
+                  unit_name = 'kcal/unit', 
+                  unit_regex = 'kcal.*can|kcal.*pouch',
                   clear_inconsistent_rows = False)
 
 df = get_unit_val_col(df, column_name = 'name', 
                   col_split_regex = ',', 
                   unit_name = 'item_count', 
-                  unit_regex = 'case')
+                  unit_regex = 'case of')
+
+df['item_count'] = df['item_count'].fillna(1)
 
 df = get_unit_val_col(df, column_name = 'name', 
                   col_split_regex = ',', 
@@ -152,11 +170,22 @@ df = get_unit_val_col(df, column_name = 'name',
                   unit_regex = 'oz',
                   clear_inconsistent_rows = False)
 
-df.rename(columns={"weight": "weight_lbs"}, inplace = True)
+df = get_unit_val_col(df, column_name = 'name', 
+                  col_split_regex = ',', 
+                  unit_name = 'total_mass_lb', 
+                  unit_regex = 'lb',
+                  clear_inconsistent_rows = False)
+
+df.rename(columns={"weight": "attr_mass_lb"}, inplace = True)
 
 df = calc_carbohydrate(df)
 df = calc_dry_matter(df)
 df = calc_percent_kcals(df)
-df = mass_per_kcal(df)
+df = calc_grams_per_kcal(df)
+df = calc_total_grams(df)
+df = calc_usd_per_gram(df)
+df = calc_total_kcals(df)
+df = calc_usd_per_kcal(df)
+
 
 df.to_csv('test.tsv', sep='\t')

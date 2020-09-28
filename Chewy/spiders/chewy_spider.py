@@ -23,7 +23,9 @@ class ChewySpider(scrapy.Spider):
         yield response.follow(next_page, self.parse)
 
     def parse_product(self, response):
-        name = response.css('div#product-title h1::text').get() #.strip()
+        name = response.css('::attr(data-current-sku-name)').get() #.strip()
+        if not name:
+            name = name = response.css('div#product-title h1::text').get()
         attr = response.css('ul.attributes ::text').getall()
 
         if any(word in name.lower() for word in (ChewySpider.PACK_WORDS + ChewySpider.TREAT_WORDS)) \
