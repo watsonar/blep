@@ -152,14 +152,6 @@ df = get_unit_val_col(df, column_name = 'name',
                   unit_regex = 'oz',
                   clear_inconsistent_rows = False)
 
-df = get_unit_val_col(df, column_name = 'weight',
-                  col_split_regex = '(?!)i',
-                  unit_name = 'weight_lbs',
-                  unit_regex = '.*',
-                  clear_inconsistent_rows = False)
-                  # this col_split_regex matches to nothing.
-                  # this unit_regex matches to everything.
-
 df.rename(columns={"weight": "weight_lbs"}, inplace = True)
 
 df = calc_carbohydrate(df)
