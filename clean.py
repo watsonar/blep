@@ -86,10 +86,10 @@ def calc_carbohydrate(df):
 
 def calc_dry_matter(df):
     df['% dry matter min'] = 100 - df['% moisture max']
-    df['% carbohydrate dry'] = df['% carbohydrate'] / df['% dry matter min']
-    df['% protein min dry']  = df['% protein min'] / df['% dry matter min']
-    df['% fat min dry']  = df['% fat min'] / df['% dry matter min']
-    df['% fiber max dry']  = df['% fiber max'] / df['% dry matter min']
+    df['% carbohydrate dry'] = df['% carbohydrate'] / df['% dry matter min'] * 100
+    df['% protein min dry']  = df['% protein min'] / df['% dry matter min'] * 100
+    df['% fat min dry']  = df['% fat min'] / df['% dry matter min'] * 100
+    df['% fiber max dry']  = df['% fiber max'] / df['% dry matter min'] * 100
     return df
 
 def calc_percent_kcals(df):
@@ -99,9 +99,9 @@ def calc_percent_kcals(df):
     cal_per_100g = df['calories carbohydrate / 100g'] \
                  + df['calories min protein / 100g'] \
                  + df['calories min fat / 100g']
-    df['% calories carbohydrate'] = df['calories carbohydrate / 100g'] / cal_per_100g
-    df['% calories min protein'] = df['calories min protein / 100g'] / cal_per_100g
-    df['% calories min fat'] = df['calories min fat / 100g'] / cal_per_100g
+    df['% calories carbohydrate'] = df['calories carbohydrate / 100g'] / cal_per_100g * 100
+    df['% calories min protein'] = df['calories min protein / 100g'] / cal_per_100g * 100
+    df['% calories min fat'] = df['calories min fat / 100g'] / cal_per_100g * 100
     return df
 
 def mass_per_kcal(df):
@@ -165,4 +165,5 @@ df = calc_percent_kcals(df)
 print(df)
 print('mass_per_kcal')
 df = mass_per_kcal(df)
-print(df)
+
+df.to_csv('test.tsv', sep='\t')
