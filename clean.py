@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import re
 
-df = pd.read_csv("Chewy/spiders/raw_chewy_spider.csv")
+df = pd.read_csv("raw_chewy_spider.csv")
 
 def float_only(val):
     val = re.sub(',', '', str(val))

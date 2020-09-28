@@ -13,7 +13,7 @@ class ChewySpider(scrapy.Spider):
         'FEED_URI': 'raw_chewy_spider.csv'
     }
     PACK_WORDS = ['variety', 'collection', 'pack']
-    TREAT_WORDS = ['treat', 'topping, topper, complement, mixer']
+    TREAT_WORDS = ['treat', 'topping', 'topper', 'complement', 'mixer']
 
     def parse(self, response):
         product_pages = [i.strip() for i in response.css('article.product-holder a::attr(href)').getall()]
