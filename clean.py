@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import re
 
-df = pd.read_csv("raw_chewy_spider.csv")
+# FUNCTION DEFINITIONS
 
 def float_only(val):
     val = re.sub(',', '', str(val))
@@ -109,6 +109,14 @@ def mass_per_kcal(df):
     df['g/kcal'] = 1000 / df['kcal/kg']
     return df
 
+def cost_per_gram(df):
+    pass    
+
+
+# PROCESS DATA 
+
+df = pd.read_csv("raw_chewy_spider.csv")
+
 df = dict_col_to_cols(df=df, col='ga_dict', ga=True)
 df = dict_col_to_cols(df=df, col='attr_dict', ga=False)
 
@@ -131,10 +139,7 @@ df = get_unit_val_col(df, column_name = 'calories',
                   col_split_regex = '(?<!/) (?=\d)|,|;|:', 
                   unit_name = 'kcal/can', 
                   unit_regex = 'kcal.*can',
-                  clear_inconsistent_rows = False,
-                  get_denom_col = True,
-                  denom_name = 'can_volume_for_cals',
-                  denom_regex = '((?<=\/).*?\d+\.?\d+)')
+                  clear_inconsistent_rows = False)
 
 df = get_unit_val_col(df, column_name = 'name', 
                   col_split_regex = ',', 
@@ -150,20 +155,16 @@ df = get_unit_val_col(df, column_name = 'name',
 df = get_unit_val_col(df, column_name = 'weight',
                   col_split_regex = '(?!)i',
                   unit_name = 'weight_lbs',
-                  unit_regex = 'pounds',
+                  unit_regex = '.*',
                   clear_inconsistent_rows = False)
                   # this col_split_regex matches to nothing.
+                  # this unit_regex matches to everything.
 
-print('calc_carb')
+df.rename(columns={"weight": "weight_lbs"}, inplace = True)
+
 df = calc_carbohydrate(df)
-print(df)
-print('calc_dry_matter')
 df = calc_dry_matter(df)
-print(df)
-print('calc_percent_kcals')
 df = calc_percent_kcals(df)
-print(df)
-print('mass_per_kcal')
 df = mass_per_kcal(df)
 
 df.to_csv('test.tsv', sep='\t')
