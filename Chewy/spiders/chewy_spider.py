@@ -2,7 +2,10 @@ import scrapy
 from scrapy.crawler import CrawlerProcess
 from scrapy.loader import ItemLoader
 from Chewy.items import ChewyItem
+from datetime import date
 
+today = date.today()
+d = today.strftime("%d_%m_%Y")
 
 class ChewySpider(scrapy.Spider):
     name = 'chewy_spider'
@@ -10,7 +13,7 @@ class ChewySpider(scrapy.Spider):
     start_urls = ['https://www.chewy.com/b/food-387']
     custom_settings = {
         'FEED_FORMAT': 'csv',
-        'FEED_URI': 'raw_chewy_spider.csv'
+        'FEED_URI': 'raw_chewy_data_' + d + '.csv'
     }
     PACK_WORDS = ['variety', 'collection', 'pack']
     TREAT_WORDS = ['treat', 'topping', 'topper', 'complement', 'mixer']
