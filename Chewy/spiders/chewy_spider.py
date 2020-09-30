@@ -13,7 +13,7 @@ class ChewySpider(scrapy.Spider):
     start_urls = ['https://www.chewy.com/b/food-387']
     custom_settings = {
         'FEED_FORMAT': 'csv',
-        'FEED_URI': 'raw_chewy_data_' + d + '.csv'
+        'FEED_URI': f'../data/external/raw_chewy_data_{d}.csv'
     }
     PACK_WORDS = ['variety', 'collection', 'pack']
     TREAT_WORDS = ['treat', 'topping', 'topper', 'complement', 'mixer']
@@ -48,7 +48,8 @@ class ChewySpider(scrapy.Spider):
                                     for row in response.css('article#Nutritional-Info table:nth-of-type(1) tbody tr')})
             yield l.load_item()
 
-
-# process = CrawlerProcess()
-# process.crawl(ChewySpider)
-# process.start()
+# To run via python, uncomment below and add scrapy project path to
+# $PYTHONPATH with `export PYTHONPATH=PROJECT_PATH:$PYTHONPATH`
+#process = CrawlerProcess()
+#process.crawl(ChewySpider)
+#process.start()
