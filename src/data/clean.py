@@ -45,14 +45,14 @@ def dict_col_to_cols(df, col, ga=True):
                     suffix = re.findall('min|max', value)
                     if len(suffix) == 1:
                         key = ' '.join((key, suffix[0]))
-                    units = re.sub('min|max|%', '', value)
-                    # if no units:
-                    if not re.search('[a-z]', units):
+                    if re.search('%|percent', key) or re.search('%|percent', value) and not re.search('\/', value):
                         key = ' '.join(('%', key))
                     # if units are mg/kg:
-                    elif re.search('mg\D*kg', units):
+                    elif re.search('mg\D*kg', value):
                         key = ' '.join(('%', key))
                         value = float_only(value)/1000000
+                    elif re.search('g\/100g', value):
+                        key = ' '.join(('%', key))
                 if key not in df:
                      df[key] = ''
                 df.at[index, key] = float_only(value)
