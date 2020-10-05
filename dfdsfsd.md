@@ -8,9 +8,9 @@ tags: []
 categories: [miscellaneous]
 comments: true
 redirect_from:
-  - /aaaa/
+  - 
 image:
-    feature: http://merenlab.org/images/aaaa.png
+    feature:
 ---
 
 {% include _toc.html %}
