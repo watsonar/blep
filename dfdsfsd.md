@@ -8,9 +8,7 @@ tags: []
 categories: [miscellaneous]
 comments: true
 redirect_from:
-  - 
 image:
-    feature:
 ---
 
 {% include _toc.html %}
