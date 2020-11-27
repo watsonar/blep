@@ -15,11 +15,19 @@ def strip_list_or_dict(item_ele):
         item_ele = {key.strip(): value.strip() for key, value in item_ele.items()}
     return item_ele
 
+# def remove_empty(item_ele):
+#     return item_ele if item_ele else None
+
 def remove_commas_from_numbers(item_ele):
     return re.sub(r'(?<=\d),(?=\d)', '', item_ele)
 
 def remove_everything_before_digits(item_ele):
     return re.sub(r'^\D+', '', item_ele)
+
+# def replace_chars(item_ele):
+#     translations = str.maketrans({',': ';'})
+#     item_ele = item_ele.translate(translations)
+#     return item
 
 class ChewyItem(scrapy.Item):
     name = Field(
