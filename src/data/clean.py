@@ -50,7 +50,7 @@ def dict_col_to_cols(df, col, ga=True):
                     # if units are mg/kg:
                     elif re.search('mg\D*kg', value):
                         key = ' '.join(('%', key))
-                        value = float_only(value)/1000000
+                        value = float_only(value)/10000
                     elif re.search('g\/100g', value):
                         key = ' '.join(('%', key))
                 if key not in df:

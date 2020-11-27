@@ -1,6 +1,6 @@
 How to run:
 ```
-cd /.../Chewy_scraper 
+cd /Users/andrea/github/willow/Chewy
 
 scrapy crawl chewy_spider
 ```

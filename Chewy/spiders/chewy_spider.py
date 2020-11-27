@@ -5,7 +5,7 @@ from Chewy.items import ChewyItem
 from datetime import date
 
 today = date.today()
-d = today.strftime("%d_%m_%Y")
+d = today.strftime("%Y_%m_%d")
 
 class ChewySpider(scrapy.Spider):
     name = 'chewy_spider'
