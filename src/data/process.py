@@ -10,6 +10,7 @@ def calc_carbohydrate(df):
                             - df['%_fiber_max']
                             - df['%_misc_components']
                             - df['%_moisture_max'])
+    df['%_carbohydrate'] = df['%_carbohydrate'].mask(df['%_carbohydrate'] < 0, 0)
     return df
 
 def calc_dry_matter(df):
