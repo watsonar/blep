@@ -96,7 +96,7 @@
 
   </head>
 
-  <body class="layout--home">
+  <body class="layout--splash">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -137,101 +137,15 @@
     <div class="initial-content">
       
 
-
-
 <div id="main" role="main">
-  
-  <div class="sidebar sticky">
-  
-
-
-<div itemscope itemtype="https://schema.org/Person">
-
-  
-
-  <div class="author__content">
-    
-      <h3 class="author__name" itemprop="name"></h3>
+  <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
     
     
-  </div>
-
-  <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
-    <ul class="author__urls social-icons">
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      <!--
-  <li>
-    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
-      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
-    </a>
-  </li>
--->
-    </ul>
-  </div>
-</div>
-
-  
-  </div>
-
-
-
-  <div class="archive">
     
-      <h1 id="page-title" class="page__title"></h1>
     
-    <html>
+
+    <section class="page__content" itemprop="text">
+      <html>
     <head>
         <link href="https://unpkg.com/tabulator-tables@4.9.1/dist/css/tabulator.min.css" rel="stylesheet">
         <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.1/dist/js/tabulator.min.js"></script>
@@ -240,62 +154,28 @@
     <body>
         <div id="example-table"></div>
         <script>
-            $.getJSON("https://raw.githubusercontent.com/watsonar/willow/gh-pages/data/processed/processed_TEST_data_2020_11_25.json?token=AHUECOGHVYQIMHWAFFUHENC7ZZ6CU").done(function (food_data) {
-            var table = new Tabulator("#example-table", {
-             	height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
-             	layout:"fitColumns", //fit columns to width of table (optional)
-             	data: food_data,
-                columns:[ //Define Table Columns
-            	 	{title:"Name", field:"name", width:150},
-            	 	{title:"URL", field:"url", hozAlign:"left", formatter:"progress"},
-             	],
-             	rowClick:function(e, row){ //trigger an alert message when the row is clicked
-             		alert("Row " + row.getData().id + " Clicked!!!!");
-             	},
-            })
-            ;
+            $.getJSON("https://raw.githubusercontent.com/watsonar/willow/gh-pages/data/processed/processed_LITE_data_2020_11_25.json?token=AHUECOGFJVV4LAVMPBPM7BK7ZZ6LU")
+            .done(function (food_data) {
+                var table = new Tabulator("#example-table", {
+                    height:600, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+                 	layout:"fitColumns", //fit columns to width of table (optional)
+                 	data: food_data,
+                 	autoColumns:true,
+                 	resizableColumns:false,
+                    rowClick:function(e, row){ //trigger an alert message when the row is clicked
+                 		alert("Row " + row.getData().id + " Clicked!!!!");
+                 	},
+                });
             });
         </script>
-hi....fkudhsfkjhas............d
+hi....
     </body>
 </html>
 
-
-<h3 class="archive__subtitle">Recent Posts</h3>
-
-
-
-
-<div class="entries-list">
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/willow/jekyll/update/2020/11/27/welcome-to-jekyll.html" rel="permalink">Welcome to Jekyll!
-</a>
-      
-    </h2>
-    
-
-
-    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
+    </section>
   </article>
 </div>
 
-  
-</div>
-
-
-
-
-  </div>
-</div>
     </div>
 
     
