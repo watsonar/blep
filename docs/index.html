@@ -12,10 +12,7 @@ author_profile: true
     <body>
         <div id="example-table"></div>
         <script>
-            $.getJSON("https://raw.githubusercontent.com/watsonar/willow/gh-pages/data/processed/processed_TEST_data_2020_11_25.json?token=AHUECOCXB6CLKUMGRWTYHI27ZZ2QI").done(function (food_data) {
-            var chewydata = [
-                {"name":"Meow Mix Tender Centers Salmon & White Meat Chicken Dry Cat Food, 13.5-lb bag","url":"https:\/\/www.chewy.com\/meow-mix-tender-centers-salmon-white\/dp\/127518","our_price":10.47,"ingredients":"Whole Ground Corn, Chicken By-Product Meal, Corn Gluten Meal, Soybean Meal, Whole Wheat, Animal Fat (Preserved with Mixed Tocopherols), Animal Digest, Corn Syrup, Glycerin, Phosphoric Acid, Calcium Carbonate, Salmon Meal, Titanium Dioxide (Color), Salt, Calcium Sulfate, Potassium Sorbate (Used As A Preservative), Potassium Chloride, Choline Chloride, L-Lysine, Vitamins (Vitamin E Supplement, Niacin Supplement, Vitamin A Supplement, D-Calcium Pantothenate, Thiamine Mononitrate, Riboflavin Supplement, Pyridoxine Hydrochloride, Menadione Sodium Bisulfite Complex, Vitamin D3 Supplement, Folic Acid, Biotin, Vitamin B12 Supplement), Dicalcium Phosphate, Carrageenan, Yellow 6, Taurine, Minerals (Ferrous Sulfate, Zinc Oxide, Manganous Oxide, Copper Sulfate, Calcium Iodate, Sodium Selenite), Yellow 5, Red 40, Natural White Meat Chicken Flavor, Dl-Methionine, BHA (Used As A Preservative), Rosemary Extract, Celery Extract.","lifestage":"adult","food_form":"dry food","special_diet":null,"packaging_type":null,"food_texture":null,"brand":null,"moisture_warning":null,"%_calories_carbohydrate":40.2940959137,"%_calories_min_protein":32.0697554127,"%_calories_min_fat":27.6361486736,"price_per_kcal":0.0004844476}
-                ];
+            $.getJSON("https://raw.githubusercontent.com/watsonar/willow/gh-pages/data/processed/processed_TEST_data_2020_11_25.json?token=AHUECOGHVYQIMHWAFFUHENC7ZZ6CU").done(function (food_data) {
             var table = new Tabulator("#example-table", {
              	height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
              	layout:"fitColumns", //fit columns to width of table (optional)
