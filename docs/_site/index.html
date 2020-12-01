@@ -156,15 +156,89 @@
         <script>
             $.getJSON("https://raw.githubusercontent.com/watsonar/willow/gh-pages/data/processed/processed_LITE_data_2020_11_25.json?token=AHUECOGFJVV4LAVMPBPM7BK7ZZ6LU")
             .done(function (food_data) {
-                var table = new Tabulator("#example-table", {
+				//custom max min header filter
+				var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
+				    var end;
+				    var container = document.createElement("span");
+				    //create and style inputs
+				    var start = document.createElement("input");
+				    start.setAttribute("type", "number");
+				    start.setAttribute("placeholder", "min");
+				    start.setAttribute("min", 0);
+				    start.setAttribute("max", 100);
+				    start.style.padding = "4px";
+					start.style.margin = "2px";
+				    start.style.width = "45%";
+				    start.style.boxSizing = "border-box";
+				    start.value = cell.getValue();
+				    function buildValues(){
+				        success({
+				            start:start.value,
+				            end:end.value,
+				        });
+				    }
+				    end = start.cloneNode();
+				    end.setAttribute("placeholder", "max");
+				    start.addEventListener("change", buildValues);
+				    start.addEventListener("focusout", buildValues);
+				    end.addEventListener("change", buildValues);
+				    end.addEventListener("blur", buildValues);
+				    container.appendChild(start);
+				    container.appendChild(end);
+				    return container;
+				 }
+				//custom max min filter function
+				function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
+				    //headerValue - the value of the header filter element
+				    //rowValue - the value of the column in this row
+				    //rowData - the data for the row being filtered
+				    //filterParams - params object passed to the headerFilterFuncParams property
+				        if(rowValue){
+				            if(headerValue.start != ""){
+				                if(headerValue.end != ""){
+				                    return rowValue >= headerValue.start && rowValue <= headerValue.end;
+				                }else{
+				                    return rowValue >= headerValue.start;
+				                }
+				            }else{
+				                if(headerValue.end != ""){
+				                    return rowValue <= headerValue.end;
+				                }
+				            }
+				        }
+				
+				    return true; //must return a boolean, true if it passes the filter.
+				}
+				var table = new Tabulator("#example-table", {
                     height:600, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
                  	layout:"fitColumns", //fit columns to width of table (optional)
-                 	data: food_data,
-                 	autoColumns:true,
-                 	resizableColumns:false,
-                    rowClick:function(e, row){ //trigger an alert message when the row is clicked
-                 		alert("Row " + row.getData().id + " Clicked!!!!");
-                 	},
+                 	data:food_data,
+                 	autoColumns:false,
+                    columns:[
+                        {title:"Product", field:"name", headerFilter:true, headerFilterPlaceholder:"text contains..."},
+                        {title:"URL", field:"url", formatter:"link"},
+                        {title:"Price (USD)", field:"our_price", formatter:"money", formatterParams:{
+                            symbol:"$", precision:2},
+							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
+                        {title:"Price/kcal", field:"price_per_kcal", formatter:"money", formatterParams:{
+                            symbol:"$", precision:6},
+							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
+                        {title:"Type", field:"food_form", headerFilter:"select", headerFilterPlaceholder:"text contains...", headerFilterParams:{
+							values:true,
+							multiselect:true,
+							sortValuesList:"asc"}},
+                        {title:"% Calories Protein (min)", field:"%_calories_min_protein", formatter:"money", formatterParams:{
+                            symbol:"%", symbolAfter:true, precision:0},
+							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
+                        {title:"% Calories Fat (min)", field:"%_calories_min_fat", formatter:"money", formatterParams:{
+							symbol:"%", symbolAfter:true, precision:0}, 
+							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
+                        {title:"% Calories Carbs", field:"%_calories_carbohydrate", formatter:"money", formatterParams:{
+                            symbol:"%", symbolAfter:true, precision:0},
+							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
+                        {title:"Ingredients", field:"ingredients"},
+                    ],
+                    placeholder:"No Data Available :(", //display message to user on empty table
                 });
             });
         </script>
