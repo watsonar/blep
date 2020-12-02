@@ -45,31 +45,79 @@ author_profile: true
         <div id="example-table"></div>
         <script>
 
-			function keywordFilterAny(headerValue, rowValue, rowData, filterParams) {
-			
-			    let keywords = headerValue.toLowerCase().split(" ");
-			    let keywordsFound = []
-			
-			    keywords.forEach(keyword=> {
+            //custom includes excludes keyword header filter
+    		var inclExclFilterEditor = function(cell, onRendered, success, cancel, editorParams){
+    		    var exclude;
+    		    var container = document.createElement("span");
+    		    //create and style inputs
+    		    var include = document.createElement("input");
+    		    include.setAttribute("type", "string");
+    		    include.setAttribute("placeholder", "Includes any");
+                include.setAttribute("min", 0);
+                include.setAttribute("max", 100);
+    		    include.style.padding = "4px";
+    			include.style.margin = "2px";
+    		    include.style.width = "45%";
+    		    include.style.boxSizing = "border-box";
+    		    include.value = cell.getValue();
+    		    function buildValues(){
+    		        success({
+    		            include:include.value,
+    		            exclude:exclude.value,
+    		        });
+    		    }
+    		    exclude = include.cloneNode();
+    		    exclude.setAttribute("placeholder", "Excludes any");
+    		    include.addEventListener("change", buildValues);
+    		    include.addEventListener("focusout", buildValues);
+    		    exclude.addEventListener("change", buildValues);
+    		    exclude.addEventListener("blur", buildValues);
+    		    container.appendChild(include);
+    		    container.appendChild(exclude);
+    		    return container;
+    		}
+            //custom includes excludes keyword filter function
+            function keywordFilterInclExclAny(headerValue, rowValue, rowData, filterParams) {
+			    let keywords_incl = headerValue.include.toLowerCase().split(" ").filter(function(word){
+                    return word != "";});
+			    let keywords_excl = headerValue.exclude.toLowerCase().split(" ").filter(function(word){
+                    return word != "";});
+			    let keywordsFound_incl = []
+			    keywords_incl.forEach(keyword => {
 			        if (rowValue != null) {
-						keywordsFound.push(rowValue.toLowerCase().includes(keyword))
+						keywordsFound_incl.push(rowValue.toLowerCase().includes(keyword))
 			    	}
 				});
-			
-			    let allKeywordsFound = keywordsFound.some(keyword => keyword)
-			
-			    return allKeywordsFound; 
-			}
-
-
-			//custom max min header filter                                                          	
+			    let keywordsFound_excl = []
+			    keywords_excl.forEach(keyword => {
+			        if (rowValue != null) {
+						keywordsFound_excl.push(rowValue.toLowerCase().includes(keyword))
+			    	}
+                });
+                if (keywordsFound_excl.some(keyword_excl => keyword_excl)) {
+                    return false;
+                }else{
+                    if (keywordsFound_incl.length == 0) {
+                        return true;
+                    }else{
+                        if (keywordsFound_incl.some(keyword_incl => keyword_incl)) {
+                            return true;
+                        }else{
+                            return false
+                        }
+                    }
+                }
+            }
+            //custom max min header filter                                                          	
     		var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
     		    var end;
     		    var container = document.createElement("span");
     		    //create and style inputs
     		    var start = document.createElement("input");
-    		    start.setAttribute("type", "string");
+    		    start.setAttribute("type", "number");
     		    start.setAttribute("placeholder", "min");
+                start.setAttribute("min", 0);
+                start.setAttribute("max", 100);
     		    start.style.padding = "4px";
     			start.style.margin = "2px";
     		    start.style.width = "45%";
@@ -129,8 +177,9 @@ author_profile: true
                             symbol:"$", precision:2},
 							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
                         {title:"Price/kcal", field:"price_per_kcal", formatter:"money", formatterParams:{
-                            symbol:"$", precision:6}, headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
-                        {title:"Type", field:"food_form",  headerFilter:"input", headerFilterFunc:"keywords", headerFilterFuncParams:{matchAll:false}},
+                            symbol:"$", precision:6}, 
+                            headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
+                        {title:"Type", field:"food_form",  headerFilter:inclExclFilterEditor, headerFilterFunc:keywordFilterInclExclAny},
                         {title:"% Calories Protein (min)", field:"%_calories_min_protein", formatter:"money", formatterParams:{
                             symbol:"%", symbolAfter:true, precision:0},
 							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
@@ -140,7 +189,7 @@ author_profile: true
                         {title:"% Calories Carbs", field:"%_calories_carbohydrate", formatter:"money", formatterParams:{
                             symbol:"%", symbolAfter:true, precision:0},
 							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
-                        {title:"Ingredients", field:"ingredients", headerFilter:"input", headerFilterFunc:"keywords", headerFilterFuncParams:{matchAll:false}},
+                        {title:"Ingredients", field:"ingredients", headerFilter:inclExclFilterEditor, headerFilterFunc:keywordFilterInclExclAny},
                     ],
                     placeholder:"No Data Available :(", //display message to user on empty table
                 })
