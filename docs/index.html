@@ -171,7 +171,10 @@ author_profile: true
     		
     		    return true; //must return a boolean, true if it passes the filter.
     		}
-
+    
+            function formatTotal(num) {
+                return ("Hits: " + num);
+            }
 			//get data and build table
             $.getJSON("https://raw.githubusercontent.com/watsonar/willow/gh-pages/data/processed/processed_LITE_data_2020_11_25.json?token=AHUECOGFJVV4LAVMPBPM7BK7ZZ6LU")
             .done(function (food_data) {
@@ -181,7 +184,11 @@ author_profile: true
                  	data:food_data,
                  	autoColumns:false,
                     columns:[
-                        {title:"Product", field:"name", headerFilter:"input", headerFilter:inclExclFilterEditor, headerFilterFunc:keywordFilterInclExclAny},
+                        {title:"Product", field:"name", topCalc: function(values, data, calcParams) {
+                            if (values && values.length) {
+                                return formatTotal(values.length);
+                            }
+                        }, headerFilter:inclExclFilterEditor, headerFilterFunc:keywordFilterInclExclAny},
                         {title:"URL", field:"url", formatter:"link"},
                         {title:"Price (USD)", field:"our_price", formatter:"money", formatterParams:{
                             symbol:"$", precision:2},
@@ -212,7 +219,7 @@ author_profile: true
             });
 
         </script>
-hiiiii
+helloooo
 
     </body>
 </html>
