@@ -9,16 +9,16 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Willow</title>
+<!-- begin _includes/seo.html --><title>blep</title>
 <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
 
 
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Willow">
-<meta property="og:title" content="Willow">
-<meta property="og:url" content="http://localhost:4000/willow/">
+<meta property="og:site_name" content="blep">
+<meta property="og:title" content="blep">
+<meta property="og:url" content="http://localhost:4000/blep/">
 
 
   <meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
@@ -34,7 +34,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:4000/willow/">
+<link rel="canonical" href="http://localhost:4000/blep/">
 
 
 
@@ -45,7 +45,7 @@
     
       "@type": "Person",
       "name": null,
-      "url": "http://localhost:4000/willow/"
+      "url": "http://localhost:4000/blep/"
     
   }
 </script>
@@ -58,7 +58,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/willow/feed.xml" type="application/atom+xml" rel="alternate" title="Willow Feed">
+<link href="/blep/feed.xml" type="application/atom+xml" rel="alternate" title="blep Feed">
 
 <!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,7 +68,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/willow/assets/css/main.css">
+<link rel="stylesheet" href="/blep/assets/css/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <!--[if IE]>
@@ -96,7 +96,7 @@
 
   </head>
 
-  <body class="layout--splash">
+  <body class="layout--home">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -117,11 +117,17 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-        <a class="site-title" href="/willow/">
-          Willow
+        <a class="site-title" href="/blep/">
+          blep
           
         </a>
-        <ul class="visible-links"></ul>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://watsonar.github.io/willow/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blep/table/">Table</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blep/about/">About me</a>
+            </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
@@ -137,239 +143,138 @@
     <div class="initial-content">
       
 
+
+
 <div id="main" role="main">
-  <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
     
     
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <div class="archive">
     
+      <h1 id="page-title" class="page__title"></h1>
+    
+    <p>h… hello?</p>
+
+
+<h3 class="archive__subtitle">Recent Posts</h3>
+
+
+
+
+<div class="entries-list">
+  
     
 
-    <section class="page__content" itemprop="text">
-      <html>
-    <head>
-        <link href="https://unpkg.com/tabulator-tables@4.9.1/dist/css/tabulator.min.css" rel="stylesheet">
-        <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.1/dist/js/tabulator.min.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-        <style>
-            /* Chrome, Safari, Edge, Opera */
-            input::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
-            
-            /* Firefox */
-            input[type=number] {
-              -moz-appearance: textfield;
-            }
-            #clear-filters {
-              border-style: solid;
-              border-width: 1px;
-              color: black;
-              background-color: white;
-              padding: 4px;
-              text-align: center;
-              text-decoration: none;
-              display: inline-block;
-              font-size: 16px;
-              margin: 2px;
-              cursor: pointer;
-            }
-            #clear-filters:hover {
-              border-style: solid;
-              border-width: 1px;
-              color: black;
-              background-color: orange;
-              padding: 4px;
-              text-align: center;
-              text-decoration: none;
-              display: inline-block;
-              font-size: 16px;
-              margin: 2px;
-              cursor: pointer;
-            }
-        </style>
-
-    </head>
-    <body>
-
-        <button id="clear-filters">Clear filters.</button>
-        <div id="example-table"></div>
-        <script>
-            //custom includes excludes keyword header filter
-    		var inclExclFilterEditor = function(cell, onRendered, success, cancel, editorParams){
-    		    var exclude;
-    		    var container = document.createElement("span");
-    		    //create and style inputs
-    		    var include = document.createElement("input");
-    		    include.setAttribute("type", "string");
-    		    include.setAttribute("placeholder", "Includes any");
-                include.setAttribute("min", 0);
-                include.setAttribute("max", 100);
-    		    include.style.padding = "4px";
-    			include.style.margin = "2px";
-    		    include.style.width = "45%";
-    		    include.style.boxSizing = "border-box";
-    		    include.value = cell.getValue();
-    		    function buildValues(){
-    		        success({
-    		            include:include.value,
-    		            exclude:exclude.value,
-    		        });
-    		    }
-    		    exclude = include.cloneNode();
-    		    exclude.setAttribute("placeholder", "Excludes any");
-    		    include.addEventListener("change", buildValues);
-    		    include.addEventListener("focusout", buildValues);
-    		    exclude.addEventListener("change", buildValues);
-    		    exclude.addEventListener("blur", buildValues);
-    		    container.appendChild(include);
-    		    container.appendChild(exclude);
-    		    return container;
-    		}
-            //custom includes excludes keyword filter function
-            function keywordFilterInclExclAny(headerValue, rowValue, rowData, filterParams) {
-			    let keywords_incl = headerValue.include.toLowerCase().split(" ").filter(function(word){
-                    return word != "";});
-			    let keywords_excl = headerValue.exclude.toLowerCase().split(" ").filter(function(word){
-                    return word != "";});
-			    let keywordsFound_incl = []
-			    keywords_incl.forEach(keyword => {
-			        if (rowValue != null) {
-						keywordsFound_incl.push(rowValue.toLowerCase().includes(keyword))
-			    	}
-				});
-			    let keywordsFound_excl = []
-			    keywords_excl.forEach(keyword => {
-			        if (rowValue != null) {
-						keywordsFound_excl.push(rowValue.toLowerCase().includes(keyword))
-			    	}
-                });
-                if (keywordsFound_excl.some(keyword_excl => keyword_excl)) {
-                    return false;
-                }else{
-                    if (keywordsFound_incl.length == 0) {
-                        return true;
-                    }else{
-                        if (keywordsFound_incl.some(keyword_incl => keyword_incl)) {
-                            return true;
-                        }else{
-                            return false
-                        }
-                    }
-                }
-            }
-            //custom max min header filter                                                          	
-    		var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
-    		    var end;
-    		    var container = document.createElement("span");
-    		    //create and style inputs
-    		    var start = document.createElement("input");
-    		    start.setAttribute("type", "number");
-    		    start.setAttribute("placeholder", "min");
-                start.setAttribute("min", 0);
-                start.setAttribute("max", 100);
-    		    start.style.padding = "4px";
-    			start.style.margin = "2px";
-    		    start.style.width = "45%";
-    		    start.style.boxSizing = "border-box";
-    		    start.value = cell.getValue();
-    		    function buildValues(){
-    		        success({
-    		            start:start.value,
-    		            end:end.value,
-    		        });
-    		    }
-    		    end = start.cloneNode();
-    		    end.setAttribute("placeholder", "max");
-    		    start.addEventListener("change", buildValues);
-    		    start.addEventListener("focusout", buildValues);
-    		    end.addEventListener("change", buildValues);
-    		    end.addEventListener("blur", buildValues);
-    		    container.appendChild(start);
-    		    container.appendChild(end);
-    		    return container;
-    		 }
-    		//custom max min filter function
-    		function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
-    		    //headerValue - the value of the header filter element
-    		    //rowValue - the value of the column in this row
-    		    //rowData - the data for the row being filtered
-    		    //filterParams - params object passed to the headerFilterFuncParams property
-    		        if(rowValue){
-    		            if(headerValue.start != ""){
-    		                if(headerValue.end != ""){
-    		                    return rowValue >= headerValue.start && rowValue <= headerValue.end;
-    		                }else{
-    		                    return rowValue >= headerValue.start;
-    		                }
-    		            }else{
-    		                if(headerValue.end != ""){
-    		                    return rowValue <= headerValue.end;
-    		                }
-    		            }
-    		        }
-    		
-    		    return true; //must return a boolean, true if it passes the filter.
-    		}
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blep/jekyll/update/2020/11/27/welcome-to-jekyll.html" rel="permalink">Welcome to Jekyll!
+</a>
+      
+    </h2>
     
-            function formatTotal(num) {
-                return ("Hits: " + num);
-            }
-			//get data and build table
-            $.getJSON("https://raw.githubusercontent.com/watsonar/willow/gh-pages/data/processed/processed_LITE_data_2020_11_25.json?token=AHUECOGFJVV4LAVMPBPM7BK7ZZ6LU")
-            .done(function (food_data) {
-				var table = new Tabulator("#example-table", {
-                    height:600, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
-                 	layout:"fitColumns", //fit columns to width of table (optional)
-                 	data:food_data,
-                 	autoColumns:false,
-                    columns:[
-                        {title:"Product", field:"name", topCalc: function(values, data, calcParams) {
-                            if (values && values.length) {
-                                return formatTotal(values.length);
-                            }
-                        }, headerFilter:inclExclFilterEditor, headerFilterFunc:keywordFilterInclExclAny},
-                        {title:"URL", field:"url", formatter:"link"},
-                        {title:"Price (USD)", field:"our_price", formatter:"money", formatterParams:{
-                            symbol:"$", precision:2},
-							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
-                        {title:"Price/kcal", field:"price_per_kcal", formatter:"money", formatterParams:{
-                            symbol:"$", precision:6}, 
-                            headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
-                        {title:"Type", field:"food_form",  headerFilter:inclExclFilterEditor, headerFilterFunc:keywordFilterInclExclAny},
-                        {title:"% Calories Protein (min)", field:"%_calories_min_protein", formatter:"money", formatterParams:{
-                            symbol:"%", symbolAfter:true, precision:0},
-							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
-                        {title:"% Calories Fat (min)", field:"%_calories_min_fat", formatter:"money", formatterParams:{
-							symbol:"%", symbolAfter:true, precision:0}, 
-							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
-                        {title:"% Calories Carbs", field:"%_calories_carbohydrate", formatter:"money", formatterParams:{
-                            symbol:"%", symbolAfter:true, precision:0},
-							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
-                        {title:"Ingredients", field:"ingredients", headerFilter:inclExclFilterEditor, headerFilterFunc:keywordFilterInclExclAny},
-                    ],
-                    placeholder:"No Data Available :(", //display message to user on empty table
-                })
 
-                //table.setFilter("food_form", "keywords", "dehydrated");
-            
-                function clearHeaderFilters() {
-                    table.clearHeaderFilter()}
-                document.getElementById("clear-filters").addEventListener("click", clearHeaderFilters);
-            });
 
-        </script>
-helloooo
-
-    </body>
-</html>
-
-    </section>
+    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
   </article>
 </div>
 
+  
+</div>
+
+
+
+
+  </div>
+</div>
     </div>
 
     
@@ -385,17 +290,17 @@ helloooo
 
     
 
-    <li><a href="/willow/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/blep/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 Willow. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2020 blep. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
     
-  <script src="/willow/assets/js/main.min.js"></script>
+  <script src="/blep/assets/js/main.min.js"></script>
 
 
 

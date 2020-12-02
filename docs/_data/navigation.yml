@@ -1,0 +1,7 @@
+main:
+  - title: "Home"
+    url: https://watsonar.github.io/willow/
+  - title: "Table"
+    url: /table/
+  - title: "About me"
+    url: /about/
