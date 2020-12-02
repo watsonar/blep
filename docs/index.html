@@ -10,32 +10,43 @@ author_profile: true
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
         <style>
-        #clear-filters {
-          border-style: solid;
-          border-width: 1px;
-          color: black;
-          background-color: white;
-          padding: 4px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 2px;
-          cursor: pointer;
-        }
-        #clear-filters:hover {
-          border-style: solid;
-          border-width: 1px;
-          color: black;
-          background-color: orange;
-          padding: 4px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 2px;
-          cursor: pointer;
-        }
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+            
+            /* Firefox */
+            input[type=number] {
+              -moz-appearance: textfield;
+            }
+            #clear-filters {
+              border-style: solid;
+              border-width: 1px;
+              color: black;
+              background-color: white;
+              padding: 4px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 2px;
+              cursor: pointer;
+            }
+            #clear-filters:hover {
+              border-style: solid;
+              border-width: 1px;
+              color: black;
+              background-color: orange;
+              padding: 4px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 2px;
+              cursor: pointer;
+            }
         </style>
 
     </head>
@@ -44,7 +55,6 @@ author_profile: true
         <button id="clear-filters">Clear filters.</button>
         <div id="example-table"></div>
         <script>
-
             //custom includes excludes keyword header filter
     		var inclExclFilterEditor = function(cell, onRendered, success, cancel, editorParams){
     		    var exclude;
@@ -171,7 +181,7 @@ author_profile: true
                  	data:food_data,
                  	autoColumns:false,
                     columns:[
-                        {title:"Product", field:"name", headerFilter:"input", headerFilterFunc:true, FilterPlaceholder:"text contains..."},
+                        {title:"Product", field:"name", headerFilter:"input", headerFilter:inclExclFilterEditor, headerFilterFunc:keywordFilterInclExclAny},
                         {title:"URL", field:"url", formatter:"link"},
                         {title:"Price (USD)", field:"our_price", formatter:"money", formatterParams:{
                             symbol:"$", precision:2},
