@@ -173,7 +173,7 @@ layout: splash
                 return ("Hits: " + num);
             }
 			//get data and build table
-            $.getJSON("https://github.com/watsonar/blep/blob/gh-pages/data/processed/processed_LITE_data_2020_11_25.json")
+            $.getJSON("https://raw.githubusercontent.com/watsonar/blep/gh-pages/data/processed/processed_LITE_data_2020_11_25.json")
             .done(function (food_data) {
 				var table = new Tabulator("#example-table", {
                     height:600, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
