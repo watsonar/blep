@@ -1,7 +1,7 @@
 ---
 layout: single
 permalink: /about/
-title: "About"
+title: "Why does this exist?"
 author_profile: true
 ---
 

@@ -14,19 +14,36 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: blep
+locale: "en-US"
+title: "blep"
+name: "Andrea Watson"
 email: ""
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Blep is an interactive cat food database with regularly updated 
+  ingredient, macronutrient, and cost information for thousands of 
+  cat food products, made easily accessible through flexible and 
+  rapid filtering and sorting. It’s also the word for that thing 
+  your pet does when they close their mouth without pulling their 
+  tongue back in and it just kind of sticks out for a while.
+
 url: watsonar.github.io
 baseurl: /blep
-twitter_username: ""
-github_username:  watsonar
+repository: "watsonar/blep"
 
-owner:
+author:
   name: Andrea
+  bio: "I have a bio"
+  location: "Chicago, USA"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github/watsonar"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/andrea-rose-watson/"
+    - label: "Google Scholar"
+      icon: "fas fa-bacterium"
+      url: "https://scholar.google.com/citations?user=OoKiogwAAAAJ&hl=en"
 
 # Build settings
 markdown: kramdown
