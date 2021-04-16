@@ -40,10 +40,10 @@ fi
 echo -e "================================================================================"
 echo -e "Scraping chewy.com for kitty food info...\n"
 
-rm data/external/raw_chewy_data_${suffix}.csv
+#rm data/external/raw_chewy_data_${suffix}.csv
 
 cd Chewy
-scrapy crawl chewy_spider
+#scrapy crawl chewy_spider
 
 echo -e "\n================================================================================"
 echo -e "Cleaning scraped data...\n"
