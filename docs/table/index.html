@@ -190,8 +190,8 @@ layout: splash
                         {title:"Price (USD)", field:"our_price", formatter:"money", formatterParams:{
                             symbol:"$", precision:2},
 							headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
-                        {title:"Price/kcal", field:"price_per_kcal", formatter:"money", formatterParams:{
-                            symbol:"$", precision:6}, 
+                        {title:"Price/month*", field:"price_per_month", formatter:"money", formatterParams:{
+                            symbol:"$", precision:2}, 
                             headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},
                         {title:"Type", field:"food_form",  headerFilter:inclExclFilterEditor, headerFilterFunc:keywordFilterInclExclAny},
                         {title:"% Calories Protein (min)", field:"%_calories_min_protein", formatter:"money", formatterParams:{
