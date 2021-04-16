@@ -1,0 +1,63 @@
+while getopts o: flag
+do
+    case "${flag}" in
+        o) suffix=${OPTARG};;
+    esac
+done
+
+# Provide output names:
+
+if [ -z ${suffix+x} ]
+then
+    suffix=$(date +'%Y_%m_%d')
+    echo -e "================================================================================"
+    echo -e "You did not set an output file name suffix, so output files will be:\n"
+else
+    echo -e "You set \"${suffix}\" as your output file name suffix, so output files  will be:\n"
+fi
+
+echo -e "data/external/raw_chewy_data_${suffix}.csv"
+echo -e "data/interim/cleaned_chewy_data_${suffix}.txt"
+echo -e "data/processed/processed_LITE_data_${suffix}.txt"
+echo -e "data/processed/processed_FULL_data_${suffix}.txt\n"
+echo -e "================================================================================"
+
+# Ask if it's okay to re-write previous raw scraping files (because htey take a longish time to make):
+
+if [ -f "data/external/raw_chewy_data_${suffix}.csv" ]
+then
+    echo -e "There are already raw scraping results at data/external/raw_chewy_data_${suffix}.csv"
+    read -p "Are you okay with overwriting that file? [y/n] " choice
+    case "$choice" in 
+        y|Y ) echo -e "Yes? Continuing...\n";;
+        n|N ) echo -e "No? Okay, exiting...\n"; exit;;
+        * ) echo -e "Invalid option, exiting...\n"; exit;;
+    esac
+fi
+
+# Do the actual stuff:
+
+echo -e "================================================================================"
+echo -e "Scraping chewy.com for kitty food info...\n"
+
+rm data/external/raw_chewy_data_${suffix}.csv
+
+cd Chewy
+scrapy crawl chewy_spider
+
+echo -e "\n================================================================================"
+echo -e "Cleaning scraped data...\n"
+
+cd ..
+pwd
+jupyter nbconvert --to notebook --execute notebooks/01_clean.ipynb
+
+echo -e "\n================================================================================"
+echo -e "Processing cleaned data...\n"
+
+jupyter nbconvert --to notebook --execute notebooks/02_process.ipynb
+
+echo -e "\n================================================================================"
+echo -e "Your processed data can be found here:\n"
+echo -e "data/processed/processed_LITE_data_${suffix}.txt"
+echo -e "data/processed/processed_FULL_data_${suffix}.txt"

@@ -56,6 +56,7 @@ def calc_kcal_per_product(df):
     df.update(df_volume_vals)
     
     return df
+<<<<<<< HEAD
 
 """
 def calc_grams_per_kcal(df):
@@ -85,3 +86,5 @@ def calc_usd_per_gram(df):
     df['usd/g'] = df['our_price'] / df['total_mass_g']
     return df
 """
+=======
+>>>>>>> master
